@@ -1,6 +1,7 @@
 package com.example.Spring.Security.Controller;
 
 import com.example.Spring.Security.Entity.Job;
+import com.example.Spring.Security.Services.JobServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,14 +12,16 @@ import java.util.List;
 
 @RestController
 public class JobController {
-    private  List<Job> jobs = new ArrayList<>();
+
+    private JobServices jobServices;
    @GetMapping("/jobs")
     public List<Job> findAll(){
-       return jobs;
+       return jobServices.findAll();
    }
 
-//   @PostMapping("/jobs")
-//    public String hello(@RequestBody jobs){
-//       return  "hell"+jobs+"why";
-//   }
+   @PostMapping("/jobs")
+    public String createJob(@RequestBody Job job){
+      jobServices.createJob(job);
+      return "job added successfully";
+   }
 }
