@@ -2,10 +2,9 @@ package com.example.Spring.Security.Controller;
 
 import com.example.Spring.Security.Entity.Job;
 import com.example.Spring.Security.Services.JobServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +19,23 @@ public class JobController {
    }
 
    @PostMapping("/jobs")
-    public String createJob(@RequestBody Job job){
+    public ResponseEntity<String> createJob(@RequestBody Job job){
       jobServices.createJob(job);
-      return "job added successfully";
+      return new ResponseEntity<>("Job Added Successfully!!",HttpStatus.OK);
+   }
+
+   @GetMapping("/jobs/{id}")
+    public ResponseEntity<Job> getJobById(@PathVariable Long id){
+       Job job = jobServices.getJobById(id);
+       if(job != null)
+           return new ResponseEntity<>(job, HttpStatus.OK);
+       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+   }
+@DeleteMapping("jobs/{id}")
+   public ResponseEntity<String> deleteJob(Long id){
+       boolean delete = jobServices.deleteJobById(id);
+       if(delete)
+           return  new ResponseEntity<>("Job deleted Sucessfully",HttpStatus.OK);
+       return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
    }
 }
