@@ -50,15 +50,16 @@ public class JobServiceImpl implements JobServices {
     }
 
     @Override
-    public boolean updateJob(Long id, Job upadatedJob){
+    public boolean updateJob(Long id, Job updatedJob) {
         Optional<Job> jobOptional = jobRepository.findById(id);
-        if(jobOptional.isPresent()){
+        if (jobOptional.isPresent()) {
             Job job = jobOptional.get();
-            job.setId(upadatedJob.getId());
-            job.setDescription(upadatedJob.getDescription());
-            job.setTitle(upadatedJob.getTitle());
-            job.setMinSalary(upadatedJob.getMinSalary());
-            job.setMaxSalary(upadatedJob.getMaxSalary());
+            job.setDescription(updatedJob.getDescription());
+            job.setTitle(updatedJob.getTitle());
+            job.setMinSalary(updatedJob.getMinSalary());
+            job.setMaxSalary(updatedJob.getMaxSalary());
+            jobRepository.save(job);
+
             return true;
         }
         return false;
