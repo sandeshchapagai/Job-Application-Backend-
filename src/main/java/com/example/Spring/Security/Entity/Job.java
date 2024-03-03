@@ -1,12 +1,28 @@
 package com.example.Spring.Security.Entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "job_table")
 public class Job {
 
+    @Column(name = "id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
+    @Column(name = "minSalary")
     private String minSalary;
+
+    @Column(name = "maxSalary")
     private String maxSalary;
+
+    @Column(name = "location")
     private  String location;
 
     public Long getId() {
@@ -55,6 +71,9 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Job() {
     }
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
