@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "job_table")
 public class Job {
 
-    @Column(name = "id")
+    @Column(name = "id"
+    )
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,6 +25,17 @@ public class Job {
 
     @Column(name = "location")
     private  String location;
+
+    @Column(name="CompanyId")
+    private  String companyId;
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
 
     public Long getId() {
         return id;

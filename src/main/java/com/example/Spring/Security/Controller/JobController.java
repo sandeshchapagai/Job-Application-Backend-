@@ -19,20 +19,20 @@ public class JobController {
     }
 
     @GetMapping("/jobs")
-    public List<Job> findAll(){
+    public List<Job> findAll() {
         return jobServices.findAll();
     }
 
     @PostMapping("/jobs")
-    public ResponseEntity<String> createJob(@RequestBody Job job){
+    public ResponseEntity<String> createJob(@RequestBody Job job) {
         jobServices.createJob(job);
-        return new ResponseEntity<>("Job Added Successfully!!",HttpStatus.OK);
+        return new ResponseEntity<>("Job Added Successfully!!", HttpStatus.OK);
     }
 
     @GetMapping("/jobs/{id}")
-    public ResponseEntity<Job> getJobById(@PathVariable Long id){
+    public ResponseEntity<Job> getJobById(@PathVariable Long id) {
         Job job = jobServices.getJobById(id);
-        if(job != null)
+        if (job != null)
             return new ResponseEntity<>(job, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

@@ -1,10 +1,13 @@
 package com.example.Spring.Security.impl;
+
 import com.example.Spring.Security.Entity.Job;
 import com.example.Spring.Security.Repository.JobRepository;
 import com.example.Spring.Security.Services.JobServices;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class JobServiceImpl implements JobServices {
 //    private List<Job> jobs = new ArrayList<>();
@@ -37,14 +40,13 @@ public class JobServiceImpl implements JobServices {
 
     @Override
     public boolean deleteJobById(Long id) {
-      try {
-          jobRepository.deleteById(id);
-          return true;
+        try {
+            jobRepository.deleteById(id);
+            return true;
 
-      }
-      catch (Exception e){
-          return false;
-      }
+        } catch (Exception e) {
+            return false;
+        }
 
 
     }
